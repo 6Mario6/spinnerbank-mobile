@@ -17,18 +17,34 @@ angular.module('app.routes', [])
     })
         
       
-    
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html'
+  
+  })
       
         
-    .state('productos', {
+    .state('app.productos', {
       url: '/lista_productos',
-      templateUrl: 'templates/productos.html',
+      views: {
+      'menuContent': {
+        templateUrl: 'templates/productos.html',
       controller: 'productosCtrl'
+      }
+    }
+      
     })
-        
-      
-    
-      
+    .state('app.detalle',{
+    url: '/producto/:aId',
+    views: {
+      'menuContent':{
+        templateUrl:'templates/detalle.html',
+        controller:'detalleProductoCtrl'
+      }
+    }
+  })    
+       
         
     .state('registrate', {
       url: '/registro',

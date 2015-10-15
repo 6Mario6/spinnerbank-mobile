@@ -1,9 +1,7 @@
 angular.module('app.services', [])
 .service('ProductosService', ['$http',function($http){
-	this.getAll=function (usuario,) {
-
-            return $http.get('data/Productos.json');
-
-
+	this.getAll=function (usuario) {
+	var base = 'https://spinnerbank-api-external.herokuapp.com';
+            return $http.get(base+'/productos/'+usuario);
         };
 }]);
