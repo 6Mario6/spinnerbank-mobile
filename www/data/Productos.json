@@ -1,0 +1,18 @@
+[
+	{
+		"nombre":"Ahorros Galleta",
+		"nro":"1234567",
+		"tipo":"Cuenta de Ahorros",
+		"saldo":1213456,
+		"id":1
+	},
+	{
+		"nombre":"Cuenta Dog",
+		"nro":"1234567",
+		"tipo":"Corriente",
+		"saldo":1213456,
+		"id":2
+	}
+
+
+]

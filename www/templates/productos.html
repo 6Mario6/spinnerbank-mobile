@@ -1,10 +1,17 @@
 <ion-view title="Productos">
     <ion-content padding="true" class="has-header">
         <ion-list>
-            <ion-item class="item-thumbnail-left">
-                <img src="/img/avatar-img.png">
+            <ion-item class="item-thumbnail-left" collection-repeat="producto in productos">
+                <!-- <img src="/img/avatar-img.png">
                 <h2>Title</h2>
-                <p>Item</p>
+                <p>Item</p> -->
+                {{producto.nombre}}
+                <br>
+                {{producto.nro}} ({{producto.tipo}})
+                <br>
+                Saldo: {{producto.saldo}}
+                
+
             </ion-item>
         </ion-list>
     </ion-content>
