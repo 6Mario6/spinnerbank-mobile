@@ -26,7 +26,13 @@ angular.module('app.routes', [])
       controller: 'productosCtrl'
     })
         
-      
+    
+    .state('movimientos', {
+      url: '/lista_movimientos',
+      templateUrl: 'templates/movimientos.html',
+      controller: 'movimientosCtrl'
+    })
+       
     
       
         

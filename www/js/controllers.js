@@ -9,11 +9,19 @@ angular.module('app.controllers', [])
 
 	ProductosService.getAll().then(function(response){
 		console.info(response.data);
-		$scope.productos = response.data		
+		$scope.productos = response.data;	
 	});
 }])
    
 .controller('registrateCtrl', function($scope) {
 
 })
+
+.controller('movimientosCtrl', ['$scope', 'MovimientosService',function($scope, MovimientosService){
+	$scope.movimientos = [];
+	
+	MovimientosService.getAll().then(function(response) {
+		$scope.movimientos = response.data;
+	});
+}]);
  
