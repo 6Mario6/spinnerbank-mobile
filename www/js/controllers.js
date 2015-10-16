@@ -12,11 +12,15 @@ angular.module('app.controllers', [])
 		$scope.productos = response.data		
 	});
 }])
-.controller('detalleProductoCtrl', ['$scope','$state',function($scope,$state){
-
-$scope.whichproducto=$state.params.aId;
- 
-}])   
+.controller('movimientosCtrl', ['$scope','MovimientosService','$state',function($scope,MovimientosService,$state) {
+	$scope.whichproducto=$state.params.aId;
+	$scope.movimientos = [];
+	MovimientosService.getAll($scope.whichproducto).then(function(response){
+		console.info(response.data);
+		$scope.movimientos = response.data		
+	});
+}])
+  
 .controller('registrateCtrl', function($scope) {
 
 })

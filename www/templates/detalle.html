@@ -1,4 +1,4 @@
-<ion-view view-title="Producto">
+<ion-view view-title="Movimientos">
 
 <div class="bar bar-subheader 
   item-input-inset bar-light">
@@ -19,10 +19,11 @@
   </div>
 </div>
   <ion-list>
-    <ion-item class="item-text-wrap item-icon-right">
-      <h2>Fecha Movimiento: {{producto.fecha}}</h2>
-       <h3>Descripción:</h3><p>{{producto.descripcion}}</p>
-      <h4>Valor:{{producto.valor}}</h4>
+    <ion-item class="item-text-wrap item-icon-right"
+    ng-repeat='movimiento in movimientos'>
+      <h2>Fecha Movimiento: {{movimiento.date}}</h2>
+       <h3>Descripción:</h3><p>{{movimiento.description}}</p>
+      <h4>Valor:{{movimiento.value}}</h4>
     </ion-item>
   </ion-list>
 </div>

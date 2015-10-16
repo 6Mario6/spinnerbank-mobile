@@ -40,7 +40,7 @@ angular.module('app.routes', [])
     views: {
       'menuContent':{
         templateUrl:'templates/detalle.html',
-        controller:'detalleProductoCtrl'
+        controller:'movimientosCtrl'
       }
     }
   })    
