@@ -18,5 +18,16 @@ angular.module('app.services', [])
         };
 
         
+}])
+
+
+.service('DetallesService', ['$http',function($http){
+	this.get=function(usuario) {
+            
+            return $http.get('https://spinnerbank-api-external.herokuapp.com/productos/' + usuario);
+              		
+    	};
+
+        
 }]);
 

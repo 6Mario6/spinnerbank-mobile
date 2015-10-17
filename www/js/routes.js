@@ -42,7 +42,12 @@ angular.module('app.routes', [])
       controller: 'registrateCtrl'
     })
         
-      
+    .state('detalleProducto', {
+      url: '/detalle/:productoId',
+      templateUrl: 'templates/detalle_producto.html',
+      controller: 'detalleProductoCtrl'
+        
+    })
     ;
 
   // if none of the above states are matched, use this as the fallback
