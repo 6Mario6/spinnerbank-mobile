@@ -2,9 +2,10 @@ angular.module('app.services', [])
 .service('ProductosService', ['$http',function($http){
 	this.getAll=function (usuario) {
 
-            return $http.get('data/Productos.json');
+    		return $http.get('https://spinnerbank-api-external.herokuapp.com/productos/' + usuario);
 
-	}
+
+	};
 	
 
 
@@ -13,7 +14,7 @@ angular.module('app.services', [])
  .service('MovimientosService', ['$http',function($http){
 	this.getAll=function (usuario) {
 
-            return $http.get('data/Movimientos.json');
+            return $http.get('https://spinnerbank-api-external.herokuapp.com/transactions/' + usuario);
         };
 
         
