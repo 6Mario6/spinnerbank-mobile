@@ -1,18 +1,21 @@
-<ion-view title="Productos">
-    <ion-content padding="true" class="has-header">
-        <ion-list>
-            <ion-item class="item-thumbnail-left" collection-repeat="producto in productos">
-                <!-- <img src="/img/avatar-img.png">
-                <h2>Title</h2>
-                <p>Item</p> -->
-                {{producto.nombre}}
-                <br>
-                {{producto.nro}} ({{producto.tipo}})
-                <br>
-                Saldo: {{producto.saldo}}
-                
-
-            </ion-item>
-        </ion-list>
-    </ion-content>
+<ion-view view-title="Productos" hide-back-button="true">
+ <div class="bar bar-subheader item-input-inset
+      bar-light">
+      <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="query" placeholder="Search">
+      </lable>
+ </div>
+  <ion-content  class="has-subheader">
+    <ion-list show-reorder="data.showReorder">
+        <ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
+        href="#app/producto/{{producto.idProducto}}">
+        <h2>{{producto.nombre}}</h2>
+        <br>
+        {{producto.idProducto}} ({{producto.tipo}})
+        <br>
+         Saldo: {{producto.saldo}}
+      </ion-item>
+      </ion-list>
+  </ion-content>
 </ion-view>
