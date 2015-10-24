@@ -48,7 +48,17 @@ angular.module('app.routes', [])
       url: '/registro',
       templateUrl: 'templates/registrate.html',
       controller: 'registrateCtrl'
-    });
+
+    })
+        
+    .state('detalleProducto', {
+      url: '/detalle/:productoId',
+      templateUrl: 'templates/detalle_producto.html',
+      controller: 'detalleProductoCtrl'
+        
+    })
+    ;
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
