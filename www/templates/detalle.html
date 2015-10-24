@@ -15,7 +15,7 @@
     <h2> Nombre de Producto: {{producto.nombre}}</h2>
     Tipo Producto: {{producto.tipo}}
     <br>
-    Saldo: {{producto.saldo}}
+    Saldo: {{producto.saldo | currency}}
   </div>
 </div>
   <ion-list>
@@ -23,7 +23,7 @@
     ng-repeat='movimiento in movimientos'>
       <h2>Fecha Movimiento: {{movimiento.date}}</h2>
        <h3>Descripción:</h3><p>{{movimiento.description}}</p>
-      <h4>Valor:{{movimiento.value}}</h4>
+      <h4>Valor:{{movimiento.value | currency}}</h4>
     </ion-item>
   </ion-list>
 </div>

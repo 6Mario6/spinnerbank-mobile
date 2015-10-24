@@ -5,8 +5,10 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('productosCtrl', ['$scope','ProductosService',function($scope,ProductosService) {
+.controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna',function($scope,ProductosService,SeleccionInterna) {
 	$scope.productos = [];
+
+	
 
 	var usuario= '1936941186';
 	ProductosService.getAll(usuario).then(function(response){
@@ -14,9 +16,17 @@ angular.module('app.controllers', [])
 		console.info(response.data);
 		$scope.productos = response.data;	
 	});
+
+	$scope.selectProducto=function(producto){
+		SeleccionInterna.setProductoSeleccionado(producto);
+	}
+
 }])
 
-.controller('movimientosCtrl', ['$scope','MovimientosService','$state',function($scope,MovimientosService,$state) {
+.controller('movimientosCtrl', ['$scope','MovimientosService','$state','SeleccionInterna',function($scope,MovimientosService,$state,SeleccionInterna) {
+	
+	$scope.producto = SeleccionInterna.getProductoSeleccionado();
+
 	$scope.whichproducto=$state.params.aId;
 	$scope.movimientos = [];
 	MovimientosService.getAll($scope.whichproducto).then(function(response){

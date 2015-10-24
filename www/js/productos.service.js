@@ -26,5 +26,17 @@ angular.module('app.services', [])
     	};
 
         
-}]);
+}])
+.service("SeleccionInterna",function () {
+    var productoSeleccionado = {};
+    this.setProductoSeleccionado =function (producto) {
+        productoSeleccionado = producto;
+    };
+
+    this.getProductoSeleccionado = function () {
+        return productoSeleccionado;
+
+    }
+})
+;
 

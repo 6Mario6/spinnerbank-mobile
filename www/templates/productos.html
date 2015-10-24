@@ -9,14 +9,16 @@
  </div>
   <ion-content  class="has-subheader">
     <ion-list show-reorder="data.showReorder">
-        <!--<ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
+        <ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
         
 
-         href="#app/producto/{{producto.idProducto}}"> -->
-         <ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
+         href="#app/producto/{{producto.idProducto}}"
+          ng-click="selectProducto(producto)"
+         >
+         <!--<ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
         
 
-         href="#/detalle/{{producto.idProducto}}">
+         href="#/detalle/{{producto.idProducto}}">-->
         <h2>{{producto.nombre}}</h2>
         <br>
         {{producto.idProducto}} ({{producto.tipo}})
