@@ -18,15 +18,6 @@ angular.module('app.services', [])
 }])
 
 
-.service('DetallesService', ['$http',function($http){
-	this.get=function(usuario) {
-            
-            return $http.get('https://spinnerbank-api-external.herokuapp.com/productos/' + usuario);
-              		
-    	};
-
-        
-}])
 .service("SeleccionInterna",function () {
     var productoSeleccionado = {};
     this.setProductoSeleccionado =function (producto) {
