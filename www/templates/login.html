@@ -1,6 +1,6 @@
 <ion-view title="Login">
 
-    <!-- <ion-content padding="true" class="has-header">
+  <ion-content padding="true" class="has-header" ng-controller="google">
         <form class="list">
             <ion-list>
                 <label class="item item-input">
@@ -14,22 +14,22 @@
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
 
-     -->
-    <ion-content ng-controller="google">
-            <br/><br/><br/><br/>
-            <div style="width: 100%;text-align: center">
-                <button ng-click="login();" class="button">
-                    Login Via Google
-                </button>                        
-                <br/>
-                <pre>
-                {{google_data|json}}
-                </pre>
-            </div>
-        </ion-content>
-            <a href="#app/lista_productos" class="button button-positive button-block ">Log in</a>
+     
+    
+
+        
+            <a href="#app/lista_productos" class="button button-positive button-block " ng-click="login();">Log in with google</a>
 
             <a href="#/registro" class="button button-positive button-clear button-block ">Crea una cuenta</a>
         </form>
+
+       <!-- <br/>
+                <pre>
+                {{google_data|json}}
+
+                <img src={{google_data.picture}}>
+                </pre>
+    -->
     </ion-content>
 </ion-view>
+
