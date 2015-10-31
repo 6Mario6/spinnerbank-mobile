@@ -37,7 +37,21 @@ angular.module('app.controllers', [])
   
 .controller('registrateCtrl', function($scope) {
 
-});
+})
+
+.controller('google', function ($scope, googleLogin) {
+            $scope.google_data = {};
+            $scope.login = function () {
+                var promise = googleLogin.startLogin();
+                promise.then(function (data) {
+                    $scope.google_data = data;
+                }, function (data) {
+                    $scope.google_data = data;
+                });
+            }
+        });
+
+
 
 
 	
