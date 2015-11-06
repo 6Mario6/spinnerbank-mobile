@@ -7,7 +7,12 @@
         <input type="search" ng-model="query" placeholder="Search">
       </lable>
  </div>
+ 
   <ion-content  class="has-subheader">
+  <div ng-click="login();" ng-controller="google">
+         <p>{{google_data.name}} de clic aqui</p>
+          <img ng-src="{{google_data.picture}}" >
+ </div>
     <ion-list show-reorder="data.showReorder">
         <ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
         
@@ -17,8 +22,9 @@
          >
          <!--<ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
         
-
+        
          href="#/detalle/{{producto.idProducto}}">-->
+        
         <h2>{{producto.nombre}}</h2>
         <br>
         {{producto.idProducto}} ({{producto.tipo}})

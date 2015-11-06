@@ -45,6 +45,7 @@ angular.module('app.controllers', [])
                 var promise = googleLogin.startLogin();
                 promise.then(function (data) {
                     $scope.google_data = data;
+                    console.log(data);
                 }, function (data) {
                     $scope.google_data = data;
                 });
