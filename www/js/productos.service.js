@@ -1,14 +1,14 @@
 angular.module('app.services', [])
 .service('ProductosService', ['$http',function($http){
-	var base = 'https://spinnerbank-api-external.herokuapp.com';
+	var base = 'https://spinnerbank-api-external.herokuapp.com/v1';
     this.getAll=function (usuario) {
 
-		
-            return $http.get(base+'/productos/'+usuario);
+            return $http.get(base+'/products/'+usuario);
+
         };
 }])
  .service('MovimientosService', ['$http',function($http){
-	var base = 'https://spinnerbank-api-external.herokuapp.com';
+	var base = 'https://spinnerbank-api-external.herokuapp.com/v1';
     this.getAll=function (idMovimiento) {
 	
             return $http.get(base+'/transactions/'+idMovimiento);
@@ -28,6 +28,18 @@ angular.module('app.services', [])
         return productoSeleccionado;
 
     }
+})
+
+.service('GoogleUser', function(){
+  var googleUser = null;
+  this.setGoogleUser = function(usuario) {
+    googleUser = usuario;
+  };
+
+  this.getGoogleUser = function() {
+    return googleUser;
+  };
+
 })
 ;
 
