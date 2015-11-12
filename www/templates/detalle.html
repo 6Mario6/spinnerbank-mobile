@@ -1,5 +1,4 @@
-<ion-view view-title="Movimientos">
-
+<ion-view view-title="Movimientos" >
 <div class="bar bar-subheader 
   item-input-inset bar-light">
   <label class="item-input-wrapper">
@@ -10,15 +9,19 @@
 
 <ion-content class="has-subheader">
 <div>
-  <div class="card">
+<div class="list card" >
+   <div class="item item-thumbnail-left">
+    <img ng-src="{{usuarioGoogle.picture}}" >
+      <h2>{{usuarioGoogle.name}}</h2>
+  </div>             
+ </div>
+  <ion-list>
   <div class="item item-text-wrap">
     <h2> Nombre de Producto: {{producto.name}}</h2>
     Tipo Producto: {{producto.productType}}
     <br>
     Saldo: {{producto.balance | currency}}
   </div>
-</div>
-  <ion-list>
     <ion-item class="item-text-wrap item-icon-right"
     ng-repeat='movimiento in movimientos'>
       <h2>Fecha Movimiento: {{movimiento.date}}</h2>

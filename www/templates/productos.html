@@ -9,33 +9,32 @@
  </div>
  
   <ion-content  class="has-subheader">
-  <div class="item" >
-    <a class="item item-thumbnail-center">
-           <h2>Bienvenido {{usuarioGoogle.name}}!</h2>
-            <img ng-src="{{usuarioGoogle.picture}}" >
-    </a>
+  <div class="list card" >
+   <div class="item item-thumbnail-left">
+    <img ng-src="{{usuarioGoogle.picture}}" >
+     <h2>Bienvenido!</h2>
+      <p>{{usuarioGoogle.name}}</p>
+  </div>             
  </div> 
   <!--  <div>
       <img ng-src="{{google_data.picture}}" >
     </div>
     -->
     <ion-list show-reorder="data.showReorder">
-        <ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
-        
-
-         href="#app/producto/{{producto.productId}}"
+        <ion-item ng-repeat='producto in productos | filter:query' class="item item-icon-left item-text-wrap"
+        href="#app/producto/{{producto.productId}}"
           ng-click="selectProducto(producto)"
          >
+        <i class="icon icon ion-card"></i>
+
          <!--<ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
         
         
          href="#/detalle/{{producto.idProducto}}">-->
         
         <h2>{{producto.name}}</h2>
-        <br>
-        {{producto.productId}} ({{producto.productType}})
-        <br>
-         Saldo: {{producto.balance | currency}}
+        Codigo producto: {{producto.productId}} <p>({{producto.productType}})</p>
+        Saldo: {{producto.balance | currency}}
       </ion-item>
 
       </ion-list>

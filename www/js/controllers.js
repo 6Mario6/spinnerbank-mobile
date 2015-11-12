@@ -28,10 +28,7 @@ angular.module('app.controllers', [])
 		SeleccionInterna.setProductoSeleccionado(producto);
 	};
 	
-    
-
-
-
+  
 }])
 
 .controller('movimientosCtrl', ['$scope','MovimientosService','$state','SeleccionInterna',function($scope,MovimientosService,$state,SeleccionInterna) {
@@ -44,6 +41,8 @@ angular.module('app.controllers', [])
 		console.info(response.data);
 		$scope.movimientos = response.data	;	
 	});
+
+	
 }])
   
 .controller('registrateCtrl', function($scope) {
@@ -85,7 +84,7 @@ angular.module('app.controllers', [])
 
         
 	
-        });
+});
 
 
 
