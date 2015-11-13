@@ -62,7 +62,19 @@ angular.module('app.controllers', [])
 }])
 
 .controller('google',function ($scope, googleLogin) {
+            
             $scope.google_data = {};
+            $scope.login = function () {
+                var promise = googleLogin.startLogin();
+                promise.then(function (data) {
+                    $scope.google_data = data;
+                }, function (data) {
+                    $scope.google_data = data;
+                });
+            };
+
+
+            /*$scope.google_data = {};
             $scope.login = function () {
                 var promise = googleLogin.startLogin();
                 promise.then(function (data) {
@@ -71,7 +83,7 @@ angular.module('app.controllers', [])
                 });
 
                
-            }
+            }*/
 
             /*$scope.getGoogleData = function() {
 
