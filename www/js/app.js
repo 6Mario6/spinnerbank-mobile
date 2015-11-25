@@ -25,12 +25,6 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services',
             template: text
             });
         };
-    $rootScope.logout = function() {
-    $rootScope.show('Sesión cerrada con éxito!');
-    $window.location.href = '#/login';
-            $window.setTimeout(function() {
-                $ionicLoading.hide();
-            }, 1999);
-    };
+
   });
-})
+});

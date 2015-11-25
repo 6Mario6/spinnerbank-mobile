@@ -23,7 +23,7 @@
     <ion-list show-reorder="data.showReorder">
         <ion-item ng-repeat='producto in productos | filter:query' class="item item-icon-left item-text-wrap"
         href="#app/producto/{{producto.productId}}"
-          ng-click="selectProducto(producto)"
+          ng-click="selectProducto(producto, usuarioGoogle)"
          >
         <i class="icon icon ion-card"></i>
 
@@ -44,20 +44,4 @@
              
   </ion-content>
 </ion-view>
-<!--
-=======
-<ion-view title="Productos">
-    <ion-content padding="true" class="has-header">
-        <ion-list>
-            <ion-item class="item-thumbnail-left" ng-repeat="producto in productos" href="#/detalle/{{producto.idProducto}}">
-                <!-- <img src="/img/avatar-img.png">
-                <h2>Title</h2>
-                <p>Item</p> -- 
-                {{producto.nombre}}
-                
 
-            </ion-item>
-        </ion-list>
-    </ion-content>
-</ion-view>
->>>>>>> 0a9862de3ddb59c45b453388e2e0bc5e644ea6b0  -->

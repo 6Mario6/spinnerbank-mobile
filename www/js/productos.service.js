@@ -20,14 +20,24 @@ angular.module('app.services', [])
 
 .service("SeleccionInterna",function () {
     var productoSeleccionado = {};
+    var usuarioGoogleSeleccionado = {};
     this.setProductoSeleccionado =function (producto) {
         productoSeleccionado = producto;
+        //usuarioGoogleSeleccionado = usuarioGoogle;
+    };
+
+    this.setUsuarioGoogleSeleccionado = function(usuarioGoogle) {
+      usuarioGoogleSeleccionado = usuarioGoogle;
     };
 
     this.getProductoSeleccionado = function () {
         return productoSeleccionado;
 
-    }
+    };
+
+    this.getGoogleUser = function() {
+      return usuarioGoogleSeleccionado;
+    };
 })
 
 .service('GoogleUser', function(){

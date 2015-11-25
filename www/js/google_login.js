@@ -183,6 +183,12 @@ googleLoginService.factory('googleLogin', [
                 }
             });
         };
+
+        service.logout = function() {
+
+            timeStorage.remove('google_access_token');
+
+        };
         service.getUserInfo = function (access_token, def) {
             var http = $http({
                 url: 'https://www.googleapis.com/oauth2/v3/userinfo',

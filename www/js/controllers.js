@@ -24,23 +24,35 @@ angular.module('app.controllers', [])
       });
 
 
-	$scope.selectProducto=function(producto){
+	$scope.selectProducto=function(producto,usuarioGoogle){
 		SeleccionInterna.setProductoSeleccionado(producto);
+        SeleccionInterna.setUsuarioGoogleSeleccionado(usuarioGoogle);
+
 	};
+
+
 	
   
 }])
 
-.controller('movimientosCtrl', ['$scope','MovimientosService','$state','SeleccionInterna',function($scope,MovimientosService,$state,SeleccionInterna) {
+.controller('movimientosCtrl', ['$scope','MovimientosService','$state','googleLogin','SeleccionInterna',function($scope,MovimientosService,$state,googleLogin,SeleccionInterna) {
 	
 	$scope.producto = SeleccionInterna.getProductoSeleccionado();
+    $scope.usuarioGoogle = SeleccionInterna.getGoogleUser();
 
 	$scope.whichproducto=$state.params.aId;
 	$scope.movimientos = [];
 	MovimientosService.getAll($scope.whichproducto).then(function(response){
 		console.info(response.data);
-		$scope.movimientos = response.data	;	
+		$scope.movimientos = response.data;	
 	});
+
+    /*var promise = googleLogin.getUserInfo();
+    promise.then(function (data) {
+     $scope.usuarioGoogle = data;
+      console.log(data.picture);
+      });*/
+  
 
 	
 }])
@@ -49,51 +61,33 @@ angular.module('app.controllers', [])
 
 })
 
-.controller('menuCtrl', ['$scope','googleLogin', function($scope, googleLogin){
+.controller('menuCtrl', ['$scope','$window','$ionicLoading','googleLogin', function($scope, $window,$ionicLoading,googleLogin){
 
-	$scope.usuarioGoogle = {};
-	var promise = googleLogin.startLogin();
-    promise.then(function (data) {
-     $scope.usuarioGoogle = data;
-      console.log(data.picture);
-      });
+    $scope.logout = function () {
+                var promise = googleLogin.logout();
+                $scope.show('Sesión cerrada con éxito!');
+                $window.location.href = '#/login';
+                $window.setTimeout(function() {
+                $ionicLoading.hide();
+            }, 1999);
+              
+    };
 
 	
 }])
 
-.controller('google',function ($scope, googleLogin) {
+.controller('google',function ($scope,$state, googleLogin) {
             
             $scope.google_data = {};
             $scope.login = function () {
                 var promise = googleLogin.startLogin();
                 promise.then(function (data) {
                     $scope.google_data = data;
+                    $state.go('app.productos');
                 }, function (data) {
                     $scope.google_data = data;
                 });
             };
-
-
-            /*$scope.google_data = {};
-            $scope.login = function () {
-                var promise = googleLogin.startLogin();
-                promise.then(function (data) {
-                    $scope.google_data = data;
-                    console.log(data.picture);
-                });
-
-               
-            }*/
-
-            /*$scope.getGoogleData = function() {
-
-            	var promise = googleLogin.getUserInfo();
-            	promise.then(function (data){
-
-            		return data;
-            	})
-            }*/
-
         
 	
 });
