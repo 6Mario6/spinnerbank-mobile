@@ -1,6 +1,6 @@
 <ion-view title="Login">
 
-  <ion-content padding="true" class="has-header" ng-controller="google">
+  <ion-content padding="true" class="has-header " ng-controller="google">
         <form class="list">
             <ion-list>
                 <label class="item item-input">
@@ -14,18 +14,13 @@
             </ion-list>
             <div class="spacer" style="height: 40px;"></div>
 
-     
-    
 
-        
-            <!--<a href="#app/lista_productos" class="button button-positive button-block " ng-click="login();">Log in with google</a>
-    -->
-
-            <button class="button button-full button-positive" ng-click="login();">
-                Login with Google
-            </button>
         </form>
-
+        <div class="social-links">
+        <button class="button button-assertive icon ion-social-google" ng-click="login();">
+                Login with Google
+        </button>
+        </div>
        <!-- <br/>
                 <pre>
                 {{google_data|json}}
