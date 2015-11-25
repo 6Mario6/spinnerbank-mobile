@@ -4,14 +4,11 @@
       <ion-nav-back-button>
       </ion-nav-back-button>
 
-      <ion-nav-buttons side="left">
+      <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
-       <ion-nav-buttons side="right">
-        <button ng-show="true" class="button button-icon button-clear ion-unlocked" ng-click="logout()">
-       </button>      
-        </ion-nav-buttons>
+    
 
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -23,9 +20,14 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/lista_productos">
-        Mis productos
-        </ion-item>
+            <ion-item menu-close  href="#/app/lista_productos">
+                <span class="item-icon-left"><i class="icon icon ion-clipboard"></i>
+                Mis productos</span>
+            </ion-item>
+             <ion-item menu-close  ng-click="logout()">
+                <span class="item-icon-left"><i class="icon ion-locked"></i>
+                Logout</span>
+                </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>
