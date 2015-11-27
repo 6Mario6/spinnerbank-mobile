@@ -4,12 +4,15 @@ angular.module('app.controllers', [])
 
 
 })
-   
+.controller("usuarioCtrl", function($scope)
+{
+    $scope.usuario = "1936941186/CC";
+})
+
 .controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna','googleLogin',function($scope,ProductosService,SeleccionInterna,googleLogin ) {
 	$scope.productos = [];
 	$scope.usuarioGoogle = {};
 	
-
 	var usuario= '1936941186/CC';
 	ProductosService.getAll(usuario).then(function(response){
 
