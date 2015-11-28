@@ -40,16 +40,20 @@ angular.module('app.services', [])
     };
 })
 
-.service('GoogleUser', function(){
-  var googleUser = null;
-  this.setGoogleUser = function(usuario) {
-    googleUser = usuario;
+
+.service('RecibirToken', ['$http',function($http){
+  this.getAuthorizationCode=function (authorization_code) {
+
+          return $http.get('http://spinnerbank-api-external.herokuapp.com/v1/oAuth2/accessToken', {
+          method: 'get',
+          params : {
+            'code':authorization_code
+          }
+        });
+
   };
 
-  this.getGoogleUser = function() {
-    return googleUser;
-  };
+}])
 
-})
 ;
 

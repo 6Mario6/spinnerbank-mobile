@@ -5,7 +5,7 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna','googleLogin',function($scope,ProductosService,SeleccionInterna,googleLogin ) {
+.controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna','googleLogin','RecibirToken',function($scope,ProductosService,SeleccionInterna,googleLogin, RecibirToken ) {
 	$scope.productos = [];
 	$scope.usuarioGoogle = {};
 	
@@ -20,9 +20,9 @@ angular.module('app.controllers', [])
 	var promise = googleLogin.startLogin();
     promise.then(function (data) {
      $scope.usuarioGoogle = data;
-      console.log(data.picture);
       });
 
+    
 
 	$scope.selectProducto=function(producto,usuarioGoogle){
 		SeleccionInterna.setProductoSeleccionado(producto);
@@ -47,11 +47,6 @@ angular.module('app.controllers', [])
 		$scope.movimientos = response.data;	
 	});
 
-    /*var promise = googleLogin.getUserInfo();
-    promise.then(function (data) {
-     $scope.usuarioGoogle = data;
-      console.log(data.picture);
-      });*/
   
 
 	
@@ -76,19 +71,20 @@ angular.module('app.controllers', [])
 	
 }])
 
-.controller('google',function ($scope,$state, googleLogin) {
+.controller('google',function ($scope,$state, googleLogin,RecibirToken) {
             
+            $scope.authorization_code ={};
             $scope.google_data = {};
             $scope.login = function () {
                 var promise = googleLogin.startLogin();
                 promise.then(function (data) {
                     $scope.google_data = data;
+                   
                     $state.go('app.productos');
                 }, function (data) {
                     $scope.google_data = data;
                 });
             };
-        
 	
 });
 

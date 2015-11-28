@@ -53,8 +53,8 @@ googleLoginService.factory('googleLogin', [
         var service = {};
         service.access_token = false;
         service.redirect_url = 'http://localhost:8100/';
-        service.client_id = '423676222567-mnspjf5bgv7naqm1stousrk1clatdder.apps.googleusercontent.com';
-        service.secret = 'kInV9wbMKLcYtsMHGtp-gLyK';
+        service.client_id = '116421120632-otf7afrfqtfeiqlibtlatnou8964bge0.apps.googleusercontent.com';
+        service.secret = 'lZ5cGSygNxc3EopNN04JU4JL';
         service.scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/plus.me';
         service.gulp = function (url, name) {
             url = url.substring(url.indexOf('?') + 1, url.length);
@@ -89,6 +89,9 @@ googleLoginService.factory('googleLogin', [
 //            }
 
         };
+
+
+
         service.authorize = function (options) {
             var def = $q.defer();
             var self = this;
@@ -118,6 +121,7 @@ googleLoginService.factory('googleLogin', [
                             win.close();
                             var url = data.url;
                             var access_code = context.gulp(url, 'code');
+                            //var access_code = context.gulp(url, 'code');
                             if (access_code) {
                                 context.validateToken(access_code, def);
                             } else {
@@ -184,13 +188,15 @@ googleLoginService.factory('googleLogin', [
             });
         };
 
+
+
         service.logout = function() {
 
             timeStorage.remove('google_access_token');
 
         };
         service.getUserInfo = function (access_token, def) {
-            var http = $http({
+             var http = $http({
                 url: 'https://www.googleapis.com/oauth2/v3/userinfo',
                 method: 'GET',
                 params: {
