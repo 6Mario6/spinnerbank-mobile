@@ -5,7 +5,7 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna','googleLogin','RecibirToken',function($scope,ProductosService,SeleccionInterna,googleLogin, RecibirToken ) {
+.controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna','googleLogin',function($scope,ProductosService,SeleccionInterna,googleLogin ) {
 	$scope.productos = [];
 	$scope.usuarioGoogle = {};
 	
@@ -21,8 +21,6 @@ angular.module('app.controllers', [])
     promise.then(function (data) {
      $scope.usuarioGoogle = data;
       });
-
-    
 
 	$scope.selectProducto=function(producto,usuarioGoogle){
 		SeleccionInterna.setProductoSeleccionado(producto);
@@ -71,7 +69,7 @@ angular.module('app.controllers', [])
 	
 }])
 
-.controller('google',function ($scope,$state, googleLogin,RecibirToken) {
+.controller('google',function ($scope,$state, googleLogin) {
             
             $scope.authorization_code ={};
             $scope.google_data = {};
@@ -85,7 +83,8 @@ angular.module('app.controllers', [])
                     $scope.google_data = data;
                 });
             };
-	
+
+	       
 });
 
 

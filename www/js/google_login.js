@@ -123,7 +123,8 @@ googleLoginService.factory('googleLogin', [
                             var access_code = context.gulp(url, 'code');
                             //var access_code = context.gulp(url, 'code');
                             if (access_code) {
-                                context.validateToken(access_code, def);
+                                //context.validateToken(access_code, def);
+                                context.getAuthorizationCode(access_code,def);
                             } else {
                                 def.reject({error: 'Access Code Not Found'});
                             }
@@ -145,7 +146,8 @@ googleLoginService.factory('googleLogin', [
                                 var access_code = context.gulp(url, 'code');
                                 if (access_code) {
                                     $log.info('Access Code: ' + access_code);
-                                    context.validateToken(access_code, def);
+                                    context.getAuthorizationCode(access_code,def);
+                                    //context.validateToken(access_code, def);
                                 } else {
                                     def.reject({error: 'Access Code Not Found'});
                                 }
@@ -157,26 +159,20 @@ googleLoginService.factory('googleLogin', [
             }
             return def.promise;
         };
-        service.validateToken = function (token, def) {
-            $log.info('Code: ' + token);
-            var http = $http({
-                url: 'https://www.googleapis.com/oauth2/v3/token',
-                method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                params: {
-                    code: token,
-                    client_id: this.client_id,
-                    client_secret: this.secret,
-                    redirect_uri: this.redirect_url,
-                    grant_type: 'authorization_code',
-                    scope: ''
-                }
-            });
+        
+        service.getAuthorizationCode=function (authorization_code,def) {
             var context = this;
-            http.then(function (data) {
+          
+          var access_code =  $http.get('http://spinnerbank-api-external.herokuapp.com/v1/oAuth2/accessToken4', {
+              method: 'get',
+              params : {
+                'code':authorization_code
+              }
+            }).then(function(data){
+
                 $log.debug(data);
                 var access_token = data.data.access_token;
-                var expires_in = data.data.expires_in;
+                var expires_in = 3599;
                 expires_in = expires_in * 1 / (60 * 60);
                 timeStorage.set('google_access_token', access_token, expires_in);
                 if (access_token) {
@@ -188,8 +184,6 @@ googleLoginService.factory('googleLogin', [
             });
         };
 
-
-
         service.logout = function() {
 
             timeStorage.remove('google_access_token');
@@ -197,7 +191,7 @@ googleLoginService.factory('googleLogin', [
         };
         service.getUserInfo = function (access_token, def) {
              var http = $http({
-                url: 'https://www.googleapis.com/oauth2/v3/userinfo',
+                url: 'https://spinnerbank-api-external.herokuapp.com/v1/oAuth2/userInfo',
                 method: 'GET',
                 params: {
                     access_token: access_token
