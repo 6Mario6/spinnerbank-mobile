@@ -17,27 +17,42 @@ angular.module('app.routes', [])
     })
         
       
-    
+    .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+    controller: 'menuCtrl'
+  
+  })
       
         
-    .state('productos', {
+    .state('app.productos', {
       url: '/lista_productos',
-      templateUrl: 'templates/productos.html',
-      controller: 'productosCtrl'
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/productos.html',
+          controller: 'productosCtrl'
+        }
+      }
+      
     })
-        
-      
-    
-      
-        
-    .state('registrate', {
+    .state('app.detalle',{
+    url: '/producto/:aId',
+    views: {
+      'menuContent':{
+        templateUrl:'templates/detalle.html',
+        controller:'movimientosCtrl'
+      }
+    }
+  })    
+  .state('registrate', {
       url: '/registro',
       templateUrl: 'templates/registrate.html',
       controller: 'registrateCtrl'
+
     })
-        
-      
     ;
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

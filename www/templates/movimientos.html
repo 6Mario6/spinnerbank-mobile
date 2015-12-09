@@ -1,0 +1,16 @@
+<ion-view title="Movimientos">
+    <ion-content padding="true" class="has-header">
+        <ion-list>
+            <ion-item class="item-thumbnail-left" collection-repeat="movimiento in movimientos">
+                <!-- <img src="/img/avatar-img.png">
+                <h2>Title</h2>
+                <p>Item</p> -->
+                {{movimiento.date}}
+                <br>
+                {{movimiento.description}} ({{movimiento.value}})
+                <br>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

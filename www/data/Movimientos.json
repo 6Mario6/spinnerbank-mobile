@@ -1,0 +1,17 @@
+[
+	{
+		"id":2,
+		"date":"16-10-2015",
+		"description":"Cargo de saldo",
+		"value":550000,
+		"productId":4
+	},
+
+	{
+		"id":4,
+		"date":"16-10-2015",
+		"description":"Transferencia de saldo",
+		"value":319550,
+		"productId":4
+	}
+]

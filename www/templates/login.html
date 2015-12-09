@@ -1,19 +1,26 @@
-<ion-view title="Login">
-    <ion-content padding="true" class="has-header">
-        <form class="list">
-            <ion-list>
-                <label class="item item-input">
-                    <span class="input-label">Username</span>
-                    <input type="text" placeholder="">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Password</span>
-                    <input type="password" placeholder="">
-                </label>
-            </ion-list>
-            <div class="spacer" style="height: 40px;"></div>
-            <a href="#/lista_productos" class="button button-dark button-block ">Log in</a>
-            <a href="#/registro" class="button button-positive button-clear button-block ">Crea una cuenta</a>
-        </form>
+<ion-view title="SpinnerBank">
+
+  <ion-content padding="true" class="has-header " ng-controller="google">
+        <ion-slide-box does-continue="true" auto-play="true" show-pager="false">
+            <ion-slide>
+                <label class="t-r">
+                Solo un click para ingresar a la aplicación!!</label>
+                <img src="img/img1.jpg" />
+            </ion-slide>
+            <ion-slide>
+                <label class="c-c">Puedes ver tu lista de productos</label>
+                <img src="img/img2.jpg" />
+            </ion-slide>
+            <ion-slide>
+                <label class="b-r">Movimientos de tus productos</label>
+                <img src="img/img3.jpg" />
+            </ion-slide>
+        </ion-slide-box>
+        <div class="social-links">
+        <button class="button button-block button-assertive icon ion-social-google" ng-click="login();">
+                Login with Google
+        </button>
+        </div>
     </ion-content>
 </ion-view>
+
