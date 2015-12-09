@@ -90,7 +90,7 @@ angular.module('app.controllers', [])
 	       
 })
 
-.controller('google', function ($scope,$cordovaGeolocation) {
+.controller('googlemap', function ($scope,$cordovaGeolocation) {
    
 
 
