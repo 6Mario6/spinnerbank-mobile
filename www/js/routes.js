@@ -51,6 +51,16 @@ angular.module('app.routes', [])
       controller: 'registrateCtrl'
 
     })
+
+    .state('app.nuevo_producto',{
+    url: '/nuevo_producto',
+    views: {
+      'menuContent':{
+        templateUrl:'templates/nuevo_producto.html',
+        controller:'NuevoProductoCtrl'
+      }
+    }
+  })  
     ;
 
 

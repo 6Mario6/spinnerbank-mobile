@@ -112,7 +112,7 @@ angular.module('app.controllers', [])
     id:1,
     show: false,
     options: { draggable: false }
-  }          
+  };     
   
   $scope.callGeolocation = function  (argument) {
     $cordovaGeolocation
@@ -130,9 +130,46 @@ angular.module('app.controllers', [])
     });
 
     
-  }
+  };
 
   $scope.callGeolocation();
+})
+
+.controller('NuevoProductoCtrl',  function($scope, $http){
+  
+  $scope.productos = [
+  {"name" : "Tarjeta de credito"},
+    {"name" : "Prestamo"},
+    {"name" : "Tarjeta Debito"},
+    {"name" : "Tarjeta Prepago"}
+  ];
+
+ $scope.formulario = {};
+
+  $scope.save = function(){
+
+  console.log("posting data....");
+  console.log($scope.formulario.producto);
+    var headers = {
+                    'Access-Control-Allow-Origin' : '*',
+                    'Accept': 'application/json'
+                };
+    $http({
+        method : 'POST',
+        url : 'http://api-que-no-esta-aun',
+        headers: headers,
+        data :JSON.stringify({
+            producto:$scope.formulario.producto,
+            tipo_producto:$scope.formulario.tipo_producto,
+            cupo:$scope.formulario.cupo,
+
+           })
+    }).success(function(data) {
+         console.log(data);
+      
+});
+  };
+
 });
 
 

@@ -1,0 +1,65 @@
+<!--<ion-view title="Nuevo Producto">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <form class="list" ng-submit="send()" method="post">
+            <ion-list>
+                <label class="item item-input item-select"  >
+                    <div class="input-label" >
+                      Nombre de Producto
+                    </div>
+                    <select ng-model="producto" ng-change="showSelectValue(producto)" >
+                      <option ng-repeat="producto in productos">{{producto.name}}</option>
+                    </select>
+                </label>
+                <label class="item item-input item-select"  >
+                    <div class="input-label" >
+                      Tipo de Producto
+                    </div>
+                    <select ng-model="tipo_producto" ng-change="showSelectValue(tipo_producto)" >
+                      <option ng-repeat="producto in productos">{{producto.name}}</option>
+                    </select>
+                </label>
+                 <label class="item item-input">
+                    <span class="input-label">Cupo</span>
+                    <input type="text" placeholder="Ingrese Cupo" ng-model="formulario.cupo" name="cupo">
+                </label>
+            </ion-list>
+            <button class="button button-positive button-block ">Enviar</button>
+        </form>
+    </ion-content>
+</ion-view>-->
+<ion-view title="Solicitar Producto">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+  <form ng-submit="save()" method="post">
+    <div class="list">
+
+        <label class="item item-input item-select">
+            <div class="input-label">
+            Producto
+            </div>
+            <select ng-model="formulario.producto" name="producto">
+                <option ng-repeat="producto in productos">{{producto.name}}</option>
+            </select>
+        </label>
+        <label class="item item-input item-select">
+            <div class="input-label">
+            Tipo de Producto
+            </div>
+            <select ng-model="formulario.tipo_producto" name="tipo_producto">
+                <option ng-repeat="producto in productos">{{producto.name}}</option>
+            </select>
+        </label>
+
+        <label class="item item-input item-stacked-label">
+        <span class="input-label">Cupo</span>
+        <input type="text" placeholder="52652.." ng-model="formulario.cupo" name="cupo">
+        </label>
+       
+
+        <button class="button button-block button-positive">Enviar!..</button>
+    </div>
+  </form>
+  </ion-content>
+</ion-view>
