@@ -28,9 +28,6 @@
     </ion-content>
 </ion-view>-->
 <ion-view title="Solicitar Producto">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
   <ion-content class="has-header">
   <form ng-submit="save()" method="post">
     <div class="list">
@@ -56,9 +53,7 @@
         <span class="input-label">Cupo</span>
         <input type="text" placeholder="52652.." ng-model="formulario.cupo" name="cupo">
         </label>
-       
-
-        <button class="button button-block button-positive">Enviar!..</button>
+        <button class="button button-block button-positive">Enviar!</button>
     </div>
   </form>
   </ion-content>
