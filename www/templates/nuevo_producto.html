@@ -20,7 +20,7 @@
                 </label>
                  <label class="item item-input">
                     <span class="input-label">Cupo</span>
-                    <input type="text" placeholder="Ingrese Cupo" ng-model="formulario.cupo" name="cupo">
+                    <input type="text" placeholder="Ingrese Cupo" ng-model="formProduct.cupo" name="cupo">
                 </label>
             </ion-list>
             <button class="button button-positive button-block ">Enviar</button>
@@ -36,22 +36,22 @@
             <div class="input-label">
             Producto
             </div>
-            <select ng-model="formulario.producto" name="producto">
-                <option ng-repeat="producto in productos">{{producto.name}}</option>
+            <select ng-model="formProduct.product" name="product" ng-change="showSelectValue(formProduct.product)">
+                <option  ng-repeat="product in products">{{product.productName}}</option>
             </select>
         </label>
         <label class="item item-input item-select">
             <div class="input-label">
             Tipo de Producto
             </div>
-            <select ng-model="formulario.tipo_producto" name="tipo_producto">
-                <option ng-repeat="producto in productos">{{producto.name}}</option>
+            <select ng-model="formProduct.type" name="type">
+               <option  ng-repeat="type in productTypes">{{type.productType}}</option>
             </select>
         </label>
 
         <label class="item item-input item-stacked-label">
         <span class="input-label">Cupo</span>
-        <input type="text" placeholder="52652.." ng-model="formulario.cupo" name="cupo">
+        <input type="text" placeholder="52652.." ng-model="formProduct.cupo" name="cupo">
         </label>
         <button class="button button-block button-positive">Enviar!</button>
     </div>

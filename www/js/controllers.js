@@ -141,19 +141,27 @@ angular.module('app.controllers', [])
 
 .controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService){
   
-  $scope.productos = [
-  {"name" : "Tarjeta de credito"},
-    {"name" : "Prestamo"},
-    {"name" : "Tarjeta Debito"},
-    {"name" : "Tarjeta Prepago"}
+  $scope.products = [
   ];
-
- $scope.formulario = {};
-
+  $scope.productTypes = [
+  ];
+ObtenerProductoService.getAll().then(function(response){
+    console.info(response.data);
+    $scope.products = response.data; 
+  });
+ $scope.formProduct = {};
+$scope.showSelectValue = function(productoName){
+   for (i = 0; i < $scope.products.length; i++) { 
+            if(productoName==$scope.products[i].productName){
+              $scope.productTypes=$scope.products[i].productTypes;
+              break;
+            }
+      }
+  };
   $scope.save = function(){
 
   console.log("posting data....");
-  console.log($scope.formulario.producto);
+  console.log($scope.formProduct.producto);
     var headers = {
                     'Access-Control-Allow-Origin' : '*',
                     'Accept': 'application/json'
@@ -163,9 +171,9 @@ angular.module('app.controllers', [])
         url : 'http://api-que-no-esta-aun',
         headers: headers,
         data :JSON.stringify({
-            producto:$scope.formulario.producto,
-            tipo_producto:$scope.formulario.tipo_producto,
-            cupo:$scope.formulario.cupo,
+            producto:$scope.formProduct.product,
+            tipo_producto:$scope.formProduct.tipo_producto,
+            cupo:$scope.formProduct.cupo,
 
            })
     }).success(function(data) {
