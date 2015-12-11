@@ -89,10 +89,41 @@ angular.module('app.controllers', [])
 
 	       
 })
+.controller('googlemap2', function ($scope) {
+$scope.Nombre = "Andres Felipe Montoya";
+$scope.Direccion = "Calle 102 No. 64 -82";
+$scope.telefono = "12345567";
+ $scope.map = { center: { latitude: 5, longitude: -73 }, zoom: 5 };
+            var posOptions = {timeout: 10000, enableHighAccuracy: false};
+        $scope.options = {scrollwheel: false};
+        $scope.marker = {
+            coords: {
+                latitude: 5,
+                longitude: -73
+            },
+            show: false,
+            id: 0
+        };
 
-.controller('googlemap', function ($scope,$cordovaGeolocation) {
+        $scope.windowOptions = {
+            visible: false
+        };
+
+        $scope.onClick = function() {
+            $scope.windowOptions.visible = !$scope.windowOptions.visible;
+        };
+
+        $scope.closeClick = function() {
+            $scope.windowOptions.visible = false;
+        };
+
+        $scope.title = "Window Title!";
+
+
+})
+.controller('googlemap', function ($scope) {
    
-
+/*,$cordovaGeolocation*/
 
   $scope.Nombre = "Andres Felipe Montoya";
   $scope.Direccion = "Calle 102 No. 64 -82";
@@ -124,7 +155,7 @@ angular.module('app.controllers', [])
       $scope.marker.show = true;
   }
 
-  $scope.callGeolocation = function  (argument) {
+ /* $scope.callGeolocation = function  (argument) {
     $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
@@ -136,7 +167,7 @@ angular.module('app.controllers', [])
     
   };
 
-  $scope.callGeolocation();
+  $scope.callGeolocation();*/
 })
 
 .controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window){

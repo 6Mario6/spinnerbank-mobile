@@ -23,9 +23,7 @@ angular.module('app.routes', [])
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   
-  })
-      
-        
+  })  
     .state('app.productos', {
       url: '/lista_productos',
       views: {
@@ -61,11 +59,14 @@ angular.module('app.routes', [])
       }
     }
   })
-    .state('MapaAsesor', {
-      url: '/MapaAsesor',
-      templateUrl: 'templates/mapa_asesor.html',
-      controller: 'googlemap'
-
+  .state('app.mapaAsesor', {
+      url: '/mapaAsesor',
+      views: {
+      'menuContent':{
+        templateUrl:'templates/mapa_asesor.html',
+        controller:'googlemap2'
+      }
+    }
     })  
     ;
 

@@ -2,6 +2,9 @@
 #social-links {
     text-align: center;
 }
+.angular-google-map-container { 
+  height: 400px;
+   }
 .slider {
   background-color: #eee;
   min-height: 200px;

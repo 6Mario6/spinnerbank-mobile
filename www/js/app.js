@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives',
-  'GoogleLoginService'])
+  'GoogleLoginService','uiGmapgoogle-maps'])
 
 .run(function($ionicPlatform,$rootScope,$ionicLoading,$window) {
   $ionicPlatform.ready(function() {
