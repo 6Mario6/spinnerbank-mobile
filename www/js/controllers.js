@@ -65,7 +65,7 @@ angular.module('app.controllers', [])
                 $window.location.href = '#/login';
                 $window.setTimeout(function() {
                 $ionicLoading.hide();
-            }, 1999);
+                }, 1999);
               
     };
 
@@ -139,8 +139,8 @@ angular.module('app.controllers', [])
   $scope.callGeolocation();
 })
 
-.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService){
-  
+.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window){
+   
   $scope.products = [
   ];
   $scope.productTypes = [
@@ -159,27 +159,36 @@ $scope.showSelectValue = function(productoName){
       }
   };
   $scope.save = function(){
-
-  console.log("posting data....");
-  console.log($scope.formProduct.producto);
-    var headers = {
+  var headers = {
                     'Access-Control-Allow-Origin' : '*',
                     'Accept': 'application/json'
-                };
-    $http({
+                  };
+    if (!$scope.formProduct.product||!$scope.formProduct.type || !$scope.formProduct.cupo) {
+      $scope.show("Por favor ingresar los campos");
+                $window.setTimeout(function() {
+                $ionicLoading.hide();
+                }, 1999);
+      return false;
+    }
+  console.log("posting data....");
+  console.log($scope.formProduct.product);
+  console.log($scope.formProduct.type);
+  console.log($scope.formProduct.cupo);
+        $http({
         method : 'POST',
         url : 'http://api-que-no-esta-aun',
         headers: headers,
         data :JSON.stringify({
             producto:$scope.formProduct.product,
-            tipo_producto:$scope.formProduct.tipo_producto,
+            tipo_producto:$scope.formProduct.type,
             cupo:$scope.formProduct.cupo,
 
            })
-    }).success(function(data) {
-         console.log(data);
-      
-});
+        }).success(function(data) {
+            console.log(data);
+        });
+              
+    
   };
 
 });
