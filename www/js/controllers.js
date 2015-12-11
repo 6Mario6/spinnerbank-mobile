@@ -139,7 +139,7 @@ angular.module('app.controllers', [])
   $scope.callGeolocation();
 })
 
-.controller('NuevoProductoCtrl',  function($scope, $http){
+.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService){
   
   $scope.productos = [
   {"name" : "Tarjeta de credito"},

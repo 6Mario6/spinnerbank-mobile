@@ -16,8 +16,15 @@ angular.module('app.services', [])
         };
         
 }])
+.service('ObtenerProductoService', ['$http',function($http){
+    var base = 'https://spinnerbank-api-external.herokuapp.com/v2';
+    this.getAll=function () {
+    
+            return $http.get(base+'/products/type');
 
-
+        };
+        
+}])
 .service("SeleccionInterna",function () {
     var productoSeleccionado = {};
     var usuarioGoogleSeleccionado = {};
@@ -39,6 +46,7 @@ angular.module('app.services', [])
       return usuarioGoogleSeleccionado;
     };
 })
+
 
 ;
 
