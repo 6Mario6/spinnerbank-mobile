@@ -60,7 +60,13 @@ angular.module('app.routes', [])
         controller:'NuevoProductoCtrl'
       }
     }
-  })  
+  })
+    .state('MapaAsesor', {
+      url: '/MapaAsesor',
+      templateUrl: 'templates/mapa_asesor.html',
+      controller: 'googlemap'
+
+    })  
     ;
 
 

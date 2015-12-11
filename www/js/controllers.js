@@ -114,17 +114,21 @@ angular.module('app.controllers', [])
     options: { draggable: false }
   };     
   
+  $scope.centrarMapa=function  (latitude, longitude) {
+    $scope.map.center.latitude  = latitude;
+      $scope.map.center.longitude = longitude;
+      $scope.marker.coords.latitude = latitude;
+      $scope.marker.coords.longitude = longitude;
+      $scope.map.zoom=15;
+      $scope.windowOptions.visible=true;
+      $scope.marker.show = true;
+  }
+
   $scope.callGeolocation = function  (argument) {
     $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function (position) {
-      $scope.map.center.latitude  = position.coords.latitude;
-      $scope.map.center.longitude = position.coords.longitude;
-      $scope.marker.coords.latitude = position.coords.latitude;
-      $scope.marker.coords.longitude = position.coords.longitude;
-      $scope.map.zoom=15;
-      $scope.windowOptions.visible=true;
-      $scope.marker.show = true;
+      $scope.centrarMapa(position.coords.latitude,position.coords.longitude);
     }, function(err) {
       // error
     });
