@@ -13,9 +13,17 @@ angular.module('app.controllers', [])
 
 	$scope.productos = [];
 	$scope.usuarioGoogle = {};
+  $scope.acces_token = {};
 	
 	var usuario= '1936941186/CC';
 
+  $scope.acces_token = googleLogin.getAccess_token();
+  console.log('hola ' + $scope.acces_token);
+ /* promise1.then(function(data) {
+      console.log('acces_token: 22'+ data);
+      $scope.acces_token = data;
+
+    });*/
 
   var promise = googleLogin.startLogin();
     promise.then(function (data) {
@@ -137,12 +145,15 @@ $scope.telefono = "3147965884";
 
 
 })
-.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window){
+.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window, googleLogin){
    
   $scope.products = [
   ];
   $scope.productTypes = [
   ];
+
+  $scope.acces_token = googleLogin.getAccess_token();
+  console.log('Este es el acces_token: '+ $scope.acces_token + ' fin');
 ObtenerProductoService.getAll().then(function(response){
     console.info(response.data);
     $scope.products = response.data; 
@@ -158,7 +169,7 @@ $scope.showSelectValue = function(productoName){
   };
   $scope.save = function(){
   var headers = {
-                    'jwt' : ':eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NfdG9rZW4iOiJ5YTI5LlNBTDNBZUx0b19VYUNubFo5UHB1OFhHVzBrNTN1OVJ3Z1ZTZGVXWC04T1VFaXdaVUtueXdjTnFZZ3NoRDNVYlZSOTNjNWcifQ.Ua8A-LlncvB3YX7uvaxHAeaxWgsMRayNWShsP3r6ApI',
+                    'jwt' : $scope.acces_token,
                     
                   };
     if (!$scope.formProduct.product||!$scope.formProduct.type || !$scope.formProduct.cupo) {
@@ -174,8 +185,12 @@ $scope.showSelectValue = function(productoName){
   console.log($scope.formProduct.cupo);
         $http({
         method : 'POST',
+        params: {
+
+          jwt : $scope.acces_token,
+        },
         url : 'https://spinnerbank-api-external.herokuapp.com/v2/product/request',
-        headers: headers,
+        //headers: headers,
         data :{
             name:$scope.formProduct.product,
             productType:$scope.formProduct.type,

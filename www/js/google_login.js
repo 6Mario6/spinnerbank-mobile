@@ -162,9 +162,6 @@ googleLoginService.factory('googleLogin', [
         
         service.getAuthorizationCode=function (authorization_code,def) {
             var context = this;
-             var headers = {
-                    'Access-Control-Allow-Origin' : '*',
-                  };
           var access_code =  $http.get('http://spinnerbank-api-external.herokuapp.com/v2/oAuth2/accessToken4', {
               method: 'get',
               params : {
