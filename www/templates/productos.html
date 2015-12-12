@@ -1,18 +1,47 @@
-<ion-view title="Productos">
-    <ion-content padding="true" class="has-header">
-        <ion-list>
-            <ion-item class="item-thumbnail-left" collection-repeat="producto in productos">
-                <!-- <img src="/img/avatar-img.png">
-                <h2>Title</h2>
-                <p>Item</p> -->
-                {{producto.nombre}}
-                <br>
-                {{producto.nro}} ({{producto.tipo}})
-                <br>
-                Saldo: {{producto.saldo}}
-                
 
-            </ion-item>
-        </ion-list>
-    </ion-content>
+<ion-view view-title="Productos" hide-back-button="true" >
+ <div class="bar bar-subheader item-input-inset
+      bar-light">
+      <label class="item-input-wrapper">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="query" placeholder="Search">
+      </lable>
+ </div>
+ 
+  <ion-content  class="has-subheader">
+  <div class="list card" >
+   <div class="item item-thumbnail-left">
+    <img ng-src="{{usuarioGoogle.picture}}" >
+     <h2>Bienvenido!</h2>
+      <p>{{usuarioGoogle.name}}</p>
+  </div>             
+ </div> 
+  <!--  <div>
+      <img ng-src="{{google_data.picture}}" >
+    </div>
+    -->
+    <ion-list show-reorder="data.showReorder">
+        <ion-item ng-repeat='producto in productos | filter:query' class="item item-icon-left item-text-wrap"
+        href="#app/producto/{{producto.productId}}"
+          ng-click="selectProducto(producto, usuarioGoogle)"
+         >
+        <i class="icon icon ion-card"></i>
+
+         <!--<ion-item ng-repeat='producto in productos | filter:query' class="item-thumbnail-left item-text-wrap"
+        
+        
+         href="#/detalle/{{producto.idProducto}}">-->
+        
+        <h2>{{producto.name}}</h2>
+        Codigo producto: {{producto.productId}} <p>({{producto.productType}})</p>
+        Saldo: {{producto.balance | currency}}
+      </ion-item>
+
+      </ion-list>
+
+       
+               
+             
+  </ion-content>
 </ion-view>
+
