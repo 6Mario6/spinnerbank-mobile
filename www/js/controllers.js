@@ -10,53 +10,53 @@ angular.module('app.controllers', [])
 })
 
 .controller('productosCtrl', ['$scope','ProductosService','SeleccionInterna','googleLogin',function($scope,ProductosService,SeleccionInterna,googleLogin ) {
+
 	$scope.productos = [];
 	$scope.usuarioGoogle = {};
 	
 	var usuario= '1936941186/CC';
-	console.log('Hola');
 
-	var promise = googleLogin.startLogin();
+
+  var promise = googleLogin.startLogin();
     promise.then(function (data) {
      $scope.usuarioGoogle = data;
       });
 
-  var jwt = googleLogin.getAccess_token();
-  console.log('jwt' + jwt);
 
-  ProductosService.getAll(usuario,jwt).then(function(response){
+
+  ProductosService.getAll(usuario).then(function(response){
 
     console.info(response.data);
     $scope.productos = response.data; 
   });
 
 
-	$scope.selectProducto=function(producto,usuarioGoogle){
-		SeleccionInterna.setProductoSeleccionado(producto);
-        SeleccionInterna.setUsuarioGoogleSeleccionado(usuarioGoogle);
+  $scope.selectProducto=function(producto,usuarioGoogle){
+    SeleccionInterna.setProductoSeleccionado(producto);
+    SeleccionInterna.setUsuarioGoogleSeleccionado(usuarioGoogle);
 
-	};
+  };
 
 
-	
+  
   
 }])
 
 .controller('movimientosCtrl', ['$scope','MovimientosService','$state','googleLogin','SeleccionInterna',function($scope,MovimientosService,$state,googleLogin,SeleccionInterna) {
-	
-	$scope.producto = SeleccionInterna.getProductoSeleccionado();
+  
+  $scope.producto = SeleccionInterna.getProductoSeleccionado();
     $scope.usuarioGoogle = SeleccionInterna.getGoogleUser();
 
-	$scope.whichproducto=$state.params.aId;
-	$scope.movimientos = [];
-	MovimientosService.getAll($scope.whichproducto).then(function(response){
-		console.info(response.data);
-		$scope.movimientos = response.data;	
-	});
+  $scope.whichproducto=$state.params.aId;
+  $scope.movimientos = [];
+  MovimientosService.getAll($scope.whichproducto).then(function(response){
+    console.info(response.data);
+    $scope.movimientos = response.data; 
+  });
 
   
 
-	
+  
 }])
   
 .controller('registrateCtrl', function($scope) {
@@ -75,7 +75,7 @@ angular.module('app.controllers', [])
               
     };
 
-	
+  
 }])
 
 .controller('google',function ($scope,$state, googleLogin) {
@@ -93,13 +93,23 @@ angular.module('app.controllers', [])
                 });
             };
 
-	       
+         
 })
-.controller('googlemap2', function ($scope) {
-$scope.Nombre = "Andres Felipe Montoya";
+.controller('googlemap', function ($scope,ObtenerAsesorService) {
+ var usuario= '1936941186';
+$scope.Nombre = "Cristian Ospina";
+$scope.idDocumento = "546454";
 $scope.Direccion = "Calle 102 No. 64 -82";
-$scope.telefono = "12345567";
- $scope.map = { center: { latitude: 5, longitude: -73 }, zoom: 5 };
+$scope.email = "ospinaospinacristian@gmail.com";
+$scope.telefono = "3147965884";
+ /* ObtenerAsesorService.getAll(usuario).then(function(response){
+    console.info(response.data);
+    $scope.Nombre =response.data.fullName;
+    $scope.Direccion =response.data.fullName;
+    $scope.telefono =response.data.fullName;
+    $scope.asesor = response.data; 
+  });*/
+ $scope.map = { center: { latitude: 5, longitude: -73 }, zoom: 12 };
             var posOptions = {timeout: 10000, enableHighAccuracy: false};
         $scope.options = {scrollwheel: false};
         $scope.marker = {
@@ -127,55 +137,6 @@ $scope.telefono = "12345567";
 
 
 })
-.controller('googlemap', function ($scope) {
-   
-/*,$cordovaGeolocation*/
-
-  $scope.Nombre = "Andres Felipe Montoya";
-  $scope.Direccion = "Calle 102 No. 64 -82";
-  $scope.telefono = "12345567";
-
-  $scope.windowOptions = {
-            visible: false
-        };
-
-  $scope.map = { center: { latitude: 5, longitude: -73 }, zoom: 5 };
-            var posOptions = {timeout: 10000, enableHighAccuracy: false};
-
-  $scope.marker = { 
-    coords: {
-      latitude: 5, longitude: -73
-    },
-    id:1,
-    show: false,
-    options: { draggable: false }
-  };     
-  
-  $scope.centrarMapa=function  (latitude, longitude) {
-    $scope.map.center.latitude  = latitude;
-      $scope.map.center.longitude = longitude;
-      $scope.marker.coords.latitude = latitude;
-      $scope.marker.coords.longitude = longitude;
-      $scope.map.zoom=15;
-      $scope.windowOptions.visible=true;
-      $scope.marker.show = true;
-  }
-
- /* $scope.callGeolocation = function  (argument) {
-    $cordovaGeolocation
-    .getCurrentPosition(posOptions)
-    .then(function (position) {
-      $scope.centrarMapa(position.coords.latitude,position.coords.longitude);
-    }, function(err) {
-      // error
-    });
-
-    
-  };
-
-  $scope.callGeolocation();*/
-})
-
 .controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window){
    
   $scope.products = [
@@ -236,6 +197,6 @@ $scope.showSelectValue = function(productoName){
 
 
 
-	
+  
 
  
