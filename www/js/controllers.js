@@ -145,7 +145,7 @@ $scope.telefono = "3147965884";
 
 
 })
-.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window, googleLogin){
+.controller('NuevoProductoCtrl',  function($scope, $http,ObtenerProductoService,$ionicLoading,$window, googleLogin, SeleccionInterna){
    
   $scope.products = [
   ];
@@ -153,6 +153,8 @@ $scope.telefono = "3147965884";
   ];
 
   $scope.acces_token = googleLogin.getAccess_token();
+   $scope.usuarioGoogle = SeleccionInterna.getGoogleUser();
+
   console.log('Este es el acces_token: '+ $scope.acces_token + ' fin');
 ObtenerProductoService.getAll().then(function(response){
     console.info(response.data);
@@ -191,7 +193,7 @@ $scope.showSelectValue = function(productoName){
             name:$scope.formProduct.product,
             productType:$scope.formProduct.type,
             amount:$scope.formProduct.cupo,
-            email :'thedemonsspeed@gmail.com',
+            email : $scope.usuarioGoogle.email,
 
            }
         }).success(function(data) {
