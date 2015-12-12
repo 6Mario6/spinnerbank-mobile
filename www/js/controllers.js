@@ -80,7 +80,7 @@ angular.module('app.controllers', [])
   
 }])
 
-.controller('google',function ($scope,$state, googleLogin) {
+.controller('google',function ($scope,$state, googleLogin, SeleccionInterna) {
             
             $scope.authorization_code ={};
             $scope.google_data = {};
@@ -88,10 +88,11 @@ angular.module('app.controllers', [])
                 var promise = googleLogin.startLogin();
                 promise.then(function (data) {
                     $scope.google_data = data;
-                   
+                    SeleccionInterna.setUsuarioGoogleSeleccionado($scope.google_data);
                     $state.go('app.productos');
                 }, function (data) {
                     $scope.google_data = data;
+                    SeleccionInterna.setUsuarioGoogleSeleccionado($scope.google_data);
                 });
             };
 
@@ -99,18 +100,21 @@ angular.module('app.controllers', [])
 })
 .controller('googlemap', function ($scope,ObtenerAsesorService) {
  var usuario= '1936941186';
-$scope.Nombre = "Cristian Ospina";
+
+/*$scope.Nombre = "Cristian Ospina";
 $scope.idDocumento = "546454";
 $scope.Direccion = "Calle 102 No. 64 -82";
 $scope.email = "ospinaospinacristian@gmail.com";
 $scope.telefono = "3147965884";
- /* ObtenerAsesorService.getAll(usuario).then(function(response){
+*/
+  ObtenerAsesorService.getAll(usuario).then(function(response){
     console.info(response.data);
     $scope.Nombre =response.data.fullName;
-    $scope.Direccion =response.data.fullName;
-    $scope.telefono =response.data.fullName;
+    $scope.Direccion =response.data.direction;
+    $scope.telefono =response.data.cellphone;
+    $scope.email =response.data.email;
     $scope.asesor = response.data; 
-  });*/
+  });
  $scope.map = { center: { latitude: 5, longitude: -73 }, zoom: 12 };
             var posOptions = {timeout: 10000, enableHighAccuracy: false};
         $scope.options = {scrollwheel: false};
