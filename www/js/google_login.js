@@ -162,16 +162,21 @@ googleLoginService.factory('googleLogin', [
         
         service.getAuthorizationCode=function (authorization_code,def) {
             var context = this;
-          
-          var access_code =  $http.get('http://spinnerbank-api-external.herokuapp.com/v1/oAuth2/accessToken4', {
+             var headers = {
+                    'Access-Control-Allow-Origin' : '*',
+                  };
+          var access_code =  $http.get('http://spinnerbank-api-external.herokuapp.com/v2/oAuth2/accessToken4', {
               method: 'get',
               params : {
                 'code':authorization_code
-              }
+              },
+              
+             
+              
             }).then(function(data){
 
                 $log.debug(data);
-                var access_token = data.data.access_token;
+                var access_token = data.data.jwt;
                 var expires_in = 3599;
                 expires_in = expires_in * 1 / (60 * 60);
                 timeStorage.set('google_access_token', access_token, expires_in);
@@ -189,13 +194,23 @@ googleLoginService.factory('googleLogin', [
             timeStorage.remove('google_access_token');
 
         };
+
+        service.getAccess_token = function() {
+           return timeStorage.get('google_access_token');
+        };
+
         service.getUserInfo = function (access_token, def) {
+             
+            var headers = {
+                    'jwt': access_token
+                  };
              var http = $http({
                 url: 'https://spinnerbank-api-external.herokuapp.com/v1/oAuth2/userInfo',
                 method: 'GET',
                 params: {
                     access_token: access_token
-                }
+                },
+                //headers: headers
             });
             http.then(function (data) {
                 $log.debug(data);

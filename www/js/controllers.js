@@ -14,16 +14,22 @@ angular.module('app.controllers', [])
 	$scope.usuarioGoogle = {};
 	
 	var usuario= '1936941186/CC';
-	ProductosService.getAll(usuario).then(function(response){
-
-		console.info(response.data);
-		$scope.productos = response.data;	
-	});
+	console.log('Hola');
 
 	var promise = googleLogin.startLogin();
     promise.then(function (data) {
      $scope.usuarioGoogle = data;
       });
+
+  var jwt = googleLogin.getAccess_token();
+  console.log('jwt' + jwt);
+
+  ProductosService.getAll(usuario,jwt).then(function(response){
+
+    console.info(response.data);
+    $scope.productos = response.data; 
+  });
+
 
 	$scope.selectProducto=function(producto,usuarioGoogle){
 		SeleccionInterna.setProductoSeleccionado(producto);
@@ -191,8 +197,8 @@ $scope.showSelectValue = function(productoName){
   };
   $scope.save = function(){
   var headers = {
-                    'Access-Control-Allow-Origin' : '*',
-                    'Accept': 'application/json'
+                    'jwt' : ':eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NfdG9rZW4iOiJ5YTI5LlNBTDNBZUx0b19VYUNubFo5UHB1OFhHVzBrNTN1OVJ3Z1ZTZGVXWC04T1VFaXdaVUtueXdjTnFZZ3NoRDNVYlZSOTNjNWcifQ.Ua8A-LlncvB3YX7uvaxHAeaxWgsMRayNWShsP3r6ApI',
+                    
                   };
     if (!$scope.formProduct.product||!$scope.formProduct.type || !$scope.formProduct.cupo) {
       $scope.show("Por favor ingresar los campos");
@@ -207,14 +213,15 @@ $scope.showSelectValue = function(productoName){
   console.log($scope.formProduct.cupo);
         $http({
         method : 'POST',
-        url : 'http://api-que-no-esta-aun',
+        url : 'https://spinnerbank-api-external.herokuapp.com/v2/product/request',
         headers: headers,
-        data :JSON.stringify({
-            producto:$scope.formProduct.product,
-            tipo_producto:$scope.formProduct.type,
-            cupo:$scope.formProduct.cupo,
+        data :{
+            name:$scope.formProduct.product,
+            productType:$scope.formProduct.type,
+            amount:$scope.formProduct.cupo,
+            email :'thedemonsspeed@gmail.com',
 
-           })
+           }
         }).success(function(data) {
             console.log(data);
         });
