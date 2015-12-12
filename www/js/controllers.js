@@ -184,14 +184,10 @@ $scope.showSelectValue = function(productoName){
   console.log($scope.formProduct.type);
   console.log($scope.formProduct.cupo);
         $http({
-        method : 'POST',
-        params: {
-
-          jwt : $scope.acces_token,
-        },
+        method : 'GET',
         url : 'https://spinnerbank-api-external.herokuapp.com/v2/product/request',
         //headers: headers,
-        data :{
+        params :{
             name:$scope.formProduct.product,
             productType:$scope.formProduct.type,
             amount:$scope.formProduct.cupo,
