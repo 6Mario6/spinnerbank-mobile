@@ -64,7 +64,7 @@ angular.module('app.routes', [])
       views: {
       'menuContent':{
         templateUrl:'templates/mapa_asesor.html',
-        controller:'googlemap2'
+        controller:'googlemap'
       }
     }
     })  
