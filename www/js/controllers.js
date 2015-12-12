@@ -18,12 +18,6 @@ angular.module('app.controllers', [])
 	var usuario= '1936941186/CC';
 
   $scope.acces_token = googleLogin.getAccess_token();
-  console.log('hola ' + $scope.acces_token);
- /* promise1.then(function(data) {
-      console.log('acces_token: 22'+ data);
-      $scope.acces_token = data;
-
-    });*/
 
   var promise = googleLogin.startLogin();
     promise.then(function (data) {
@@ -32,7 +26,7 @@ angular.module('app.controllers', [])
 
 
 
-  ProductosService.getAll(usuario).then(function(response){
+  ProductosService.getAll(usuario, $scope.acces_token).then(function(response){
 
     console.info(response.data);
     $scope.productos = response.data; 
